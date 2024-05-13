@@ -1,0 +1,242 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #f5f5f5; /* Light gray background */
+    color: #385170; /* Dark text color */
+}
+
+#city-filter{
+    margin-bottom: 21px;
+    border: none;
+    height: 1.5rem;
+    border-radius: 1.625rem
+}
+
+#company-filter{
+    border: none;
+    height: 1.5rem;
+    border-radius: 1.625rem
+}
+.main-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #f5f5f5; /* Light gray background */
+}
+
+nav h1 {
+    font-size: 24px;
+    margin-left: 1rem;
+    color: white; /* Dark text color */
+}
+
+.themed-button {
+    width: 100px;
+    height: 40px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #eb5e28; /* Orange button color */
+}
+
+.search-wrapper {
+    position: relative;
+}
+
+#resultsContainer {
+    display: none;
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 1;
+    color: #333333; /* Dark text color */
+}
+
+nav ul {
+    display: flex;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #385170; /* Dark gray background */
+    color: #ffffff; /* White text color */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+nav ul input {
+    width: 80%;
+    margin-left: 20rem;
+    height: 40px;
+    background: whitesmoke;
+    outline: none;
+    border: none;
+    border-radius: 20px; /* Rounded search bar */
+    padding: 0 0 0 1.5rem;
+    font-size: 16px;
+}
+
+nav ul li {
+    display: flex;
+    margin-left: 10px;
+}
+
+nav ul li a {
+    display: block;
+    color: #ffffff;
+    padding: 0.5rem;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+li a:hover {
+    background-color: #444444; /* Darker gray hover color */
+}
+
+.sidebar {
+    flex: 0 0 25%;
+    background-color: #ececec; /* White side panel background */
+    padding: 1rem;
+    color: #333333; /* Dark text color */
+    border-radius: 10px; /* Rounded side panel */
+}
+
+.sidebar form select {
+    width: 100%;
+}
+
+.sidebar form button {
+    display: block;
+    margin-top: 2rem;
+    width: 100%;
+    height: 40px;
+    background-color: #9fd3c7; /* Orange button color */
+    color: #ffffff; /* White text color */
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-radius: 20px; /* Rounded button */
+}
+
+#map {
+    flex: 1;
+    height: calc(100vh - 60px);
+    padding: 0;
+    z-index: 1;
+}
+
+.login-modal,
+.register-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.login-modal-content,
+.register-modal-content {
+    background-color: #ffffff; /* White modal background */
+    color: #333333; /* Dark text color */
+    margin: 5px auto;
+    padding: 2rem;
+    border: 1px solid #dddddd; /* Light gray border */
+    width: 15%;
+    min-width: 300px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    min-height: 300px;
+    height: auto;
+    border-radius: 20px; /* Rounded modal */
+}
+
+#register-link{
+    font-size: 23px;
+}
+
+#login-link{
+    font-size: 25px;
+}
+
+#login-link:hover{
+    background: none;
+}
+
+.blue{
+    color: #142d4c;
+}
+
+.search-container ion-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4%;
+    font-size: 23px;
+    margin-left: 17rem;
+}
+
+
+#register-link:hover{
+    background: none;
+    content: "register";
+}
+
+
+.login-modal-content input,
+.register-modal-content input {
+    display: block;
+    margin: 1rem;
+    padding: 0 0 0 1.5rem;
+    height: 40px;
+    background: whitesmoke;
+    outline: none;
+    border: none;
+    border-radius: 20px; /* Rounded input fields */
+    font-size: 16px;
+}
+
+#login-error-message {
+    color: red;
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+.arrow-button {
+    background-color: #eb5e28; /* Orange button color */
+    color: #ffffff; /* White text color */
+}
+
+select {
+    display: block;
+    margin-top: 0.
