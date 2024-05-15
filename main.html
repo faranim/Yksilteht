@@ -16,14 +16,14 @@
             crossorigin=""
     ></script>
     <script src="main.js" defer></script>
-    <title>Metropolia Restaurants</title>
+    <title>Restaurants</title>
 </head>
 <body>
 <header>
     <nav>
         <ul>
             <div class="header-left">
-                <h1>Restaurants</h1>
+                <h1><ion-icon name="restaurant"></ion-icon> Restaurants</h1>
                 <div class="search-container"><ion-icon name="search-outline"></ion-icon>
 
                     <input
@@ -38,7 +38,7 @@
             <div class="header-right">
                 <li><a href="login.html" id="login-link"><ion-icon name="log-in-outline"></ion-icon></a></li>
                 <li>
-                    <a href="#logout" id="logout-link" style="display: none"
+                    <a href="#logout" id="logout-link" class="userinfo" style="display: none"
                     >Logout</a
                     >
                 </li>
@@ -48,6 +48,7 @@
                     >Profile</a
                     >
                 </li>
+                <li id="logoutbutton"><ion-icon name="log-out"></ion-icon> </li>
             </div>
         </ul>
     </nav>
@@ -96,6 +97,12 @@
     </div>
 
     <div id="map"></div>
+    <dialog>
+    </dialog>
+    <div class="box">
+        <h1 class="menuHeader">Menu</h1>
+        <div id="restaurantMenu"></div>
+    </div>
 </div>
 <script
         type="module"
