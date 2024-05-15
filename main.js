@@ -1,18 +1,15 @@
-const map = L.map('map');
-map.locate({setView: true, maxZoom: 16});
-map.on('locationfound', function (e) {
-    map.setView(e.latlng, 10);
-    const myIcon = L.icon({
-        iconUrl: 'Resources/UserLocationIcon.png',
-        iconSize: [41, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [8, -41]
-    });
-    L.marker(e.latlng, {icon: myIcon}).addTo(map).bindPopup("Your location");
-});
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright"></a>',
+
+
+const map = L.map('map').setView([60.1695, 24.9354], 13);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
+
+let markers = [{lat: 60.1695, lon: 24.9354, city: 'Helsinki'}];
+let dayOrWeek = '';
 
 const loginButton = document.getElementById("login-link");
 const returnButtonLogin = document.getElementById("submitlogin");
@@ -35,13 +32,19 @@ document.addEventListener('DOMContentLoaded', async function () {
     await userCheck();
 });
 
-loginForm.addEventListener('submit', async function (event) {
-    await login(event);
+document.addEventListener('DOMContentLoaded', function () {
+    const loginForm = document.getElementById('login-form');
+
+    loginForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        await login(event);
+    });
+    registerForm.addEventListener('submit', async function (event) {
+        await register(event);
+    });
 });
 
-registerForm.addEventListener('submit', async function (event) {
-    await register(event);
-});
+
 
 logoutButton.addEventListener('click', function () {
         localStorage.removeItem('token');
@@ -141,7 +144,7 @@ async function getRestaurants() {
     }
 }
 async function getMenu(id, dayOrWeek) {
-    const url = `https://10.120.32.94/restaurant/api/v1/restaurants/${dayOrWeek}/${id}/}`;
+    const url = `https://10.120.32.94/restaurant/api/v1/restaurants/${dayOrWeek}/${id}`;
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -187,12 +190,12 @@ async function getMenu(id, dayOrWeek) {
 
 async function login(event) {
     event.preventDefault();
-    const loginInput = document.getElementById("loginusername");
+    const loginInputUsername = document.getElementById("loginusername");
+    const loginValueUsername = loginInputUsername.value;
     const loginInputPassword = document.getElementById("loginpassword");
-    const loginValue = loginInput.value;
     const loginValuePassword = loginInputPassword.value;
     const userDetails = {
-        username: loginValue,
+        username: loginValueUsername,
         password: loginValuePassword,
     };
 

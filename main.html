@@ -15,8 +15,8 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""
     ></script>
-    <script src="main.js" defer></script>
-    <title>Restaurants</title>
+    <script src="main.js" type="module" defer></script>
+    <script src="restraunts.js" type="module" defer></script>
 </head>
 <body>
 <header>
@@ -24,7 +24,7 @@
         <ul>
             <div class="header-left">
                 <h1><ion-icon name="restaurant"></ion-icon> Restaurants</h1>
-                <div class="search-container"><ion-icon name="search-outline"></ion-icon>
+                <div id="search-field" class="search-container"><ion-icon name="search-outline"></ion-icon>
 
                     <input
 
@@ -36,7 +36,9 @@
                 </div>
             </div>
             <div class="header-right">
-                <li><a href="login.html" id="login-link"><ion-icon name="log-in-outline"></ion-icon></a></li>
+                <li><a href="login.html" id="login-link" class="">
+                    <div class="tooltip"><ion-icon name="log-in-outline"></ion-icon></div>
+                </a></li>
                 <li>
                     <a href="#logout" id="logout-link" class="userinfo" style="display: none"
                     >Logout</a
@@ -57,42 +59,21 @@
     <div class="sidebar">
         <h1 class="blue">Filter</h1>
         <form id="filter-form">
-            <label for="city" class="blue">City</label>
-            <select id="city-filter">
+            <label class="blue">City</label>
+            <select id="filterCity">  //cityfilter
                 <option value="All">All</option>
-                <option value="Helsinki">Helsinki</option>
-                <option value="Espoo">Espoo</option>
-                <option value="Vantaa">Vantaa</option>
             </select>
 
             <label for="company" class="blue">Company</label>
-            <select id="company-filter">
+            <select id="filterCompany"> //company-filter
                 <option value="All">All</option>
                 <option value="Sodexo">Sodexo</option>
                 <option value="Compass Group">Compass Group</option>
             </select>
 
             <button type="submit" id="filter-button" class="filter-button">
-                Filter
+                Reset
             </button>
-        </form>
-    </div>
-    <div class="login-modal" id="login-modal">
-        <form class="login-form animate">
-
-
-            <label for="login-password"><b>Password</b></label>
-            <input
-                    type="password"
-                    name="login-password"
-                    id="login-password-input"
-                    placeholder="Enter Password"
-                    required
-            />
-
-            <p id="login-error-message">Incorrect password or username</p>
-
-            <button type="submit" class="themed-button">Login</button>
         </form>
     </div>
 
@@ -100,8 +81,20 @@
     <dialog>
     </dialog>
     <div class="box">
-        <h1 class="menuHeader">Menu</h1>
-        <div id="restaurantMenu"></div>
+        <div class="scrollable-content">
+        <section id="ravintolat">
+            <h2>Ravintolat</h2>
+            <table>
+                <tr>
+                    <th>Nimi</th>
+                    <th>Osoite</th>
+                </tr>
+            </table>
+            <dialog>
+                <dialog></dialog>
+            </dialog>
+        </section>
+        </div>
     </div>
 </div>
 <script
