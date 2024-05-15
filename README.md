@@ -1,4 +1,4 @@
-##Features
+## Features
 
 1.Restaurant Display: The application displays restaurant information on an interactive map. Each restaurant is represented by a marker on the map.
 
