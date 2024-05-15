@@ -121,7 +121,9 @@ li a:hover {
     background-color: #ececec; /* White side panel background */
     padding: 1rem;
     color: #333333; /* Dark text color */
-    border-radius: 10px; /* Rounded side panel */
+    margin: 0.4rem 0.5rem 0.5rem 0.5rem;
+    overflow: auto;
+    box-shadow: 2px 2px #e3e3e3;
 }
 
 .sidebar form select {
@@ -141,11 +143,13 @@ li a:hover {
     border-radius: 20px; /* Rounded button */
 }
 
+
 #map {
-    flex: 1;
-    height: calc(100vh - 60px);
-    padding: 0;
-    z-index: 1;
+    flex: 3;
+    padding: 19.25rem;
+    margin: 0.5%;
+    box-shadow: 2px 2px #e3e3e3;
+
 }
 
 .login-modal,
@@ -184,6 +188,14 @@ li a:hover {
     font-size: 23px;
 }
 
+#register-link :hover{
+    background: none;
+}
+
+#logoutbutton:hover{
+    background: none;
+}
+
 #login-link{
     font-size: 25px;
 }
@@ -196,6 +208,13 @@ li a:hover {
     color: #142d4c;
 }
 
+#logoutbutton{
+    font-size: 25px;
+}
+
+#logoutbutton:hover {
+    background: none;
+}
 .search-container ion-icon {
     position: absolute;
     top: 50%;
