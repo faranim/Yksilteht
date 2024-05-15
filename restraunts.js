@@ -13,7 +13,6 @@ import {
     fetchWeeklyMenuEN as fetchWeeklyMenuEN
 } from "./utils.js";
 
-
 let ravintolat;
 
 const getAPI = async () => {
@@ -29,18 +28,6 @@ const getAPI = async () => {
     }
 };
 
-// kartassa etäisyyden laskeminen
-function getDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371;
-    const dLat = (lat2 - lat1) * (Math.PI / 180);
-    const dLon = (lon2 - lon1) * (Math.PI / 180);
-    const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
-}
 
 // näytä ravintolat
 function displayRestaurants(restaurants) {
@@ -66,7 +53,7 @@ function displayRestaurants(restaurants) {
 
             L.marker([userLat, userLon], { icon: redIcon })
                 .addTo(map)
-                .bindPopup(selectedLanguage === 'FI' ? 'Oma sijainti' : 'My location')
+                .bindPopup('My location')
                 .openPopup();
 
             let nearestRestaurant = null;
@@ -127,6 +114,7 @@ function displayRestaurants(restaurants) {
 }
 
 // modaalin avaaminen
+
 const openModal = async (restaurant) => {
     const modal = document.createElement('dialog');
     const restaurantContent = restaurantModal(restaurant);
@@ -139,19 +127,19 @@ const openModal = async (restaurant) => {
     const defaultOption = document.createElement('option');
     defaultOption.className = 'default-option';
     defaultOption.value = '';
-    defaultOption.textContent = selectedLanguage === 'FI' ? 'Valitse menu' : 'Choose menu';
+    defaultOption.textContent = 'Choose menu';
     selectMenu.appendChild(defaultOption);
 
     const dailyOption = document.createElement('option');
     defaultOption.className = 'default-option';
     dailyOption.value = 'daily';
-    dailyOption.textContent = selectedLanguage === 'FI' ? 'Päivän Menu' : 'Daily Menu';
+    dailyOption.textContent = 'Daily Menu';
     selectMenu.appendChild(dailyOption);
 
     const weeklyOption = document.createElement('option');
     defaultOption.className = 'default-option';
     weeklyOption.value = 'weekly';
-    weeklyOption.textContent = selectedLanguage === 'FI' ? 'Viikon Menu' : 'Weekly Menu';
+    weeklyOption.textContent = 'Weekly Menu';
     selectMenu.appendChild(weeklyOption);
 
     modal.appendChild(selectMenu);
@@ -164,45 +152,26 @@ const openModal = async (restaurant) => {
         handleError(error);
     }
 
-    const translations = {
-        FI: {
-            close: 'Sulje',
-            invalidMenuType: "Virheellinen menu-tyyppi",
-        },
-        EN: {
-            close: 'Close',
-            invalidMenuType: "Invalid menu type",
-        },
-        SV: {
-            close: 'Stäng',
-            invalidMenuType: "Ogiltig menutyp",
-        }
-    };
-
     selectMenu.addEventListener('change', async () => {
         const menuType = selectMenu.value;
         try {
             let menuContent;
 
-            //ruotsi tai englanti sivu valittu
-            const SVEN = selectedLanguage === 'SV' || selectedLanguage === 'EN';
-
             if (menuType === 'daily') {
-                const menu = await (SVEN ? fetchDailyMenuEN : fetchDailyMenuFI)(restaurant._id);
-                menuContent = SVEN ? dailyModalEN(menu) : dailyModal(menu);
+                const menu = await fetchDailyMenuEN(restaurant._id);
+                menuContent = dailyModalEN(menu);
             } else if (menuType === 'weekly') {
-                const menu = await (SVEN ? fetchWeeklyMenuEN : fetchWeeklyMenuFI)(restaurant._id);
-                menuContent = SVEN ? weeklyModalEN(menu) : weeklyModal(menu);
+                const menu = await fetchWeeklyMenuEN(restaurant._id);
+                menuContent = weeklyModalEN(menu);
             } else {
-                const translation = translations[selectedLanguage].invalidMenuType;
-                throw new Error(translation);
+                throw new Error('Invalid menu type');
             }
 
             modal.innerHTML = menuContent;
 
             const closeButton = document.createElement('button');
             closeButton.className = 'close-button';
-            closeButton.textContent = selectedLanguage === 'FI' ? 'Sulje' : 'Close';
+            closeButton.textContent = 'Close';
             closeButton.addEventListener('click', () => modal.close());
 
             modal.appendChild(closeButton);
@@ -213,7 +182,6 @@ const openModal = async (restaurant) => {
 
     const closeButton = document.createElement('button');
     closeButton.id = 'closeButton';
-    closeButton.textContent = translations[selectedLanguage].close;
     closeButton.addEventListener('click', () => modal.close());
 
     modal.appendChild(closeButton);
@@ -222,7 +190,7 @@ const openModal = async (restaurant) => {
 
 // käsittele virheet
 const handleError = (error) => {
-    const errorMessage = selectedLanguage === 'FI' ? 'Tietojen hakeminen epäonnistui. Yritä uudelleen.' : 'Failed to fetch data. Please try again later.';
+    const errorMessage = 'Failed to fetch data. Please try again later.';
     alert(errorMessage);
 };
 

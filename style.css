@@ -294,4 +294,69 @@ li a:hover {
 
 select {
     display: block;
-    margin-top: 0.
+}
+
+.menu-item {
+    padding: 10px;
+}
+
+#menuType {
+    text-align: center;
+    width: 130px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    padding-left: 10px;
+    cursor: pointer;
+    background: #9fd3c7;
+}
+
+@media (max-width: 850px) {
+    .main-container {
+        flex-direction: column;
+        overflow: hidden;
+        min-height: 125%;
+    }
+
+    .headerText {
+        font-size: calc(1rem + 2vw);
+    }
+
+    .button {
+        font-size: 0.8rem;
+        height: 40%;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center; /* Center align items */
+    }
+
+    .header-buttons {
+        width: 100%;
+        justify-content: space-between; /* Align items with space between */
+    }
+
+    dialog {
+        width: 50vw;
+    }
+
+    nav ul input {
+        width: 60%; /* Adjust width */
+        margin-left: auto; /* Move to the center */
+        margin-right: auto; /* Move to the center */
+    }
+
+    .search-container ion-icon {
+        display: none; /* Hide the search icon */
+    }
+
+    nav ul .header-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-container{
+        margin-left: 5rem;
+    }
+}
